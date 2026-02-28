@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>TckLearn — Training Tomorrow's Leaders</title>
+  <meta name="description" content="Live expert-led IT &amp; tech training. 20 courses from Python and Cybersecurity to AI, Cloud, IoT, Data Architecture and more. Plans from £50/month."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --white:#ffffff; --bg:#f7f9fc; --bg2:#eef2f8;
+      --border:#e4e9f2; --border-mid:#c8d3e8;
+      --teal:#4ab19b; --teal-light:#e8f8f4; --teal-mid:#b3ead9; --teal-dark:#128f73;
+      --ink:#111827; --ink-2:#374151; --ink-3:#6b7280; --ink-4:#9ca3af;
+      --error:#ef4444;
+      --radius-sm:8px; --radius:14px; --radius-lg:22px; --radius-xl:32px;
+      --shadow-xs:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+      --shadow-sm:0 2px 8px rgba(0,0,0,.07),0 1px 3px rgba(0,0,0,.04);
+      --shadow-md:0 4px 20px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+      --shadow-lg:0 12px 40px rgba(0,0,0,.10),0 4px 12px rgba(0,0,0,.05);
+      --shadow-teal:0 6px 24px rgba(26,171,139,.22);
+      --font:'Plus Jakarta Sans',sans-serif; --font-serif:'Lora',serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{color:inherit;text-decoration:none;}
+    button{font-family:var(--font);cursor:pointer;border:none;background:none;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.3rem;color:var(--ink);letter-spacing:-.02em;}
+    .logo-mark{width:38px;height:38px;background:linear-gradient(145deg,var(--teal),#4da996);border-radius:11px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-teal);flex-shrink:0;}
+    .logo-mark svg{width:22px;height:22px;}
+    .nav-links{display:flex;align-items:center;gap:4px;}
+    .nav-links a{padding:7px 14px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--ink-3);transition:all .18s;}
+    .nav-links a:hover{color:var(--ink);background:var(--bg);}
+    .nav-cta{display:flex;align-items:center;gap:10px;}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-weight:600;font-size:.9rem;border-radius:var(--radius-sm);transition:all .18s;cursor:pointer;border:none;white-space:nowrap;}
+    .btn-sm{padding:8px 18px;font-size:.85rem;}
+    .btn-md{padding:11px 24px;}
+    .btn-lg{padding:14px 32px;font-size:1rem;border-radius:var(--radius);}
+    .btn-xl{padding:17px 40px;font-size:1.05rem;border-radius:var(--radius);}
+    .btn-primary{background:var(--teal);color:white;box-shadow:var(--shadow-teal);}
+    .btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 8px 28px rgba(26,171,139,.3);}
+    .btn-primary:active{transform:translateY(0);}
+    .btn-outline{background:transparent;color:var(--ink-2);border:1.5px solid var(--border-mid);}
+    .btn-outline:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light);}
+    .btn-secondary{background:var(--white);color:var(--ink-2);border:1.5px solid var(--border);box-shadow:var(--shadow-xs);}
+    .btn-secondary:hover{border-color:var(--border-mid);box-shadow:var(--shadow-sm);}
+    .btn-white{background:white;color:var(--teal-dark);font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.15);}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+
+    /* HERO */
+    .hero{background:var(--white);padding:90px 48px 80px;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(26,171,139,.07) 0%,transparent 70%);pointer-events:none;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-light);color:var(--teal-dark);border:1px solid var(--teal-mid);padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:600;margin-bottom:28px;}
+    .live-dot{width: 15px;height:15px;border-radius:50%;background:var(--teal);animation:livepulse 2s infinite;}
+    @keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    .hero h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--ink);max-width:820px;margin:0 auto 20px;}
+    .hero h1 em{font-style:normal;color:var(--teal);}
+    .hero-sub{font-size:1.1rem;color:var(--ink-3);max-width:560px;margin:0 auto 40px;line-height:1.7;}
+    .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .hero-cta-note{font-size:.8rem;color:var(--ink-4);margin-top:16px;}
+
+    /* TRUST STRIP */
+    .trust-strip{background:var(--white);border-bottom:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+    .trust-item{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:.88rem;font-weight:500;}
+    .trust-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+
+    /* SECTIONS */
+    .section{padding:88px 48px;}
+    .section-alt{background:var(--white);}
+    .container{max-width:1200px;margin:0 auto;}
+    .section-header{text-align:center;margin-bottom:56px;}
+    .eyebrow{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+    h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;letter-spacing:-.025em;line-height:1.15;color:var(--ink);margin-bottom:14px;}
+    .section-desc{font-size:1rem;color:var(--ink-3);max-width:560px;margin:0 auto;line-height:1.7;}
+
+    /* COURSE FILTER */
+    .course-filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+    .filter-btn{padding:7px 18px;border-radius:100px;font-size:.82rem;font-weight:600;border:1.5px solid var(--border);background:var(--white);color:var(--ink-3);cursor:pointer;transition:all .18s;}
+    .filter-btn:hover,.filter-btn.active{background:var(--teal);color:white;border-color:var(--teal);box-shadow:var(--shadow-teal);}
+
+    /* COURSE GRID — 4 col for clean 20-course layout */
+    .courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .course-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-xs);overflow:hidden;transition:all .22s;display:flex;flex-direction:column;}
+    .course-card:hover{box-shadow:var(--shadow-md);border-color:var(--teal-mid);}
+    .course-card.hidden{display:none;}
+    .course-card-top{padding:24px 22px 16px;flex:1;}
+    .course-emoji{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;}
+    .course-name{font-size:.97rem;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.3;}
+    .course-tagline{font-size:.78rem;font-weight:600;color:var(--teal-dark);margin-bottom:12px;line-height:1.4;}
+    .course-intro{font-size:.83rem;color:var(--ink-3);line-height:1.65;margin-bottom:16px;}
+    .outcomes-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px;}
+    .outcome-list{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+    .outcome-list li{display:flex;align-items:flex-start;gap:8px;font-size:.79rem;color:var(--ink-2);line-height:1.45;}
+    .outcome-list li::before{content:"✓";color:var(--teal);font-weight:700;font-size:.75rem;flex-shrink:0;margin-top:2px;}
+    .section-label{font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;}
+    .course-tools{display:flex;flex-wrap:wrap;gap:5px;}
+    .tool-tag{font-size:.67rem;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--ink);color:rgba(255,255,255,.9);letter-spacing:.02em;}
+    .course-card-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .course-level{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:5px;}
+    .course-cta-link{font-size:.8rem;font-weight:700;color:var(--teal);display:flex;align-items:center;gap:4px;transition:gap .15s;white-space:nowrap;}
+    .course-card:hover .course-cta-link{gap:7px;}
+
+    /* HOW IT WORKS */
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+    .steps::before{content:'';position:absolute;top:40px;left:calc(12.5%);right:calc(12.5%);height:2px;background:var(--teal-mid);z-index:0;}
+    .step{text-align:center;padding:0 24px;position:relative;z-index:1;}
+    .step-num{width:80px;height:80px;border-radius:50%;background:var(--white);border:2px solid var(--teal-mid);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 20px;box-shadow:var(--shadow-sm);}
+    .step h3{font-size:.95rem;font-weight:700;margin-bottom:8px;}
+    .step p{font-size:.85rem;color:var(--ink-3);line-height:1.6;}
+
+    /* PRICING */
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;}
+    .plan-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:32px 26px;transition:all .2s;box-shadow:var(--shadow-xs);position:relative;}
+    .plan-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+    .plan-card.popular{border-color:var(--teal);box-shadow:0 0 0 4px rgba(26,171,139,.07),var(--shadow-md);}
+    .popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--teal);color:white;padding:4px 16px;border-radius:100px;font-size:.73rem;font-weight:700;white-space:nowrap;}
+    .plan-tier{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4);margin-bottom:4px;}
+    .plan-seats{font-size:.82rem;font-weight:600;color:var(--teal-dark);margin-bottom:14px;}
+    .plan-price{margin-bottom:4px;}
+    .plan-price .currency{font-size:1.1rem;font-weight:600;color:var(--ink-2);vertical-align:top;line-height:2;}
+    .plan-price .amount{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1;}
+    .plan-per{font-size:.8rem;color:var(--ink-4);margin-bottom:22px;}
+    .plan-divider{height:1px;background:var(--border);margin-bottom:18px;}
+    .plan-features{list-style:none;margin-bottom:26px;}
+    .plan-features li{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:.84rem;color:var(--ink-2);line-height:1.4;}
+    .feat-yes{width:17px;height:17px;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;margin-top:2px;}
+    .btn-plan{width:100%;padding:12px;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;}
+
+    /* ENQUIRY */
+    .enquiry-layout{display:grid;grid-template-columns:400px 1fr;gap:64px;align-items:start;}
+    .enquiry-info .eyebrow{margin-bottom:12px;}
+    .enquiry-info h2{margin-bottom:16px;}
+    .enquiry-info > p{font-size:.95rem;color:var(--ink-3);line-height:1.75;margin-bottom:32px;}
+    .contact-row{display:flex;flex-direction:column;gap:16px;margin-bottom:36px;}
+    .contact-item-label{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4);margin-bottom:5px;}
+    .contact-item-link{font-size:.95rem;font-weight:600;color:var(--teal-dark);display:inline-flex;align-items:center;gap:8px;transition:color .15s;}
+    .contact-item-link:hover{color:var(--teal);}
+    .guarantees{display:flex;flex-direction:column;gap:18px;}
+    .guarantee{display:flex;align-items:flex-start;gap:14px;}
+    .guarantee-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+    .guarantee strong{display:block;font-size:.87rem;font-weight:700;color:var(--ink);margin-bottom:2px;}
+    .guarantee span{font-size:.81rem;color:var(--ink-3);line-height:1.5;}
+    .form-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow-md);}
+    .form-card h3{font-size:1.15rem;font-weight:800;color:var(--ink);margin-bottom:4px;}
+    .form-card .form-subtitle{font-size:.87rem;color:var(--ink-3);margin-bottom:28px;}
+    .field{margin-bottom:16px;}
+    .field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink-2);margin-bottom:6px;}
+    .field input,.field select,.field textarea{width:100%;font-family:var(--font);font-size:.9rem;color:var(--ink);background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,171,139,.12);}
+    .field input::placeholder,.field textarea::placeholder{color:var(--ink-4);}
+    .field textarea{resize:vertical;min-height:96px;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .req{color:var(--error);}
+    #form-alert{min-height:0;}
+    .alert{padding:13px 16px;border-radius:var(--radius-sm);font-size:.87rem;line-height:1.5;}
+    .alert-success{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;}
+    .alert-error{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;}
+    .form-note{font-size:.76rem;color:var(--ink-4);text-align:center;margin-top:12px;}
+    .form-note a{color:var(--teal);}
+    .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .65s linear infinite;display:inline-block;vertical-align:middle;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .tcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-xs);}
+    .stars{color:#f59e0b;font-size:.85rem;letter-spacing:2px;margin-bottom:14px;}
+    .tcard blockquote{font-size:.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:18px;font-style:italic;font-family:var(--font-serif);}
+    .reviewer{display:flex;align-items:center;gap:12px;}
+    .rev-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;color:white;flex-shrink:0;}
+    .rev-name{font-size:.87rem;font-weight:700;color:var(--ink);}
+    .rev-role{font-size:.76rem;color:var(--ink-4);}
+
+    /* CTA BANNER */
+    .cta-banner{background:linear-gradient(135deg,#0d7a63 0%,#1aab8b 50%,#16c79a 100%);border-radius:var(--radius-xl);padding:64px 56px;text-align:center;color:white;position:relative;overflow:hidden;}
+    .cta-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.06);}
+    .cta-banner::after{content:'';position:absolute;bottom:-80px;left:-40px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.05);}
+    .cta-banner h2{color:white;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px;}
+    .cta-banner p{color:rgba(255,255,255,.82);font-size:1rem;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;}
+
+    /* FOOTER */
+    footer{background:var(--ink);color:rgba(255,255,255,.6);padding:56px 48px 32px;}
+    .footer-inner{max-width:1200px;margin:0 auto;}
+    .footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:40px;flex-wrap:wrap;}
+    .footer-brand .logo{color:white;margin-bottom:12px;}
+    .footer-brand p{font-size:.84rem;max-width:250px;line-height:1.7;}
+    .footer-col h4{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px;}
+    .footer-col ul{list-style:none;}
+    .footer-col ul li{margin-bottom:10px;}
+    .footer-col ul li a{font-size:.86rem;color:rgba(255,255,255,.6);transition:color .15s;}
+    .footer-col ul li a:hover{color:white;}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.81rem;}
+    .footer-bottom a{color:rgba(255,255,255,.5);}
+    .footer-bottom a:hover{color:white;}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+
+    /* RESPONSIVE */
+    @media(max-width:1200px){.courses-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:1060px){
+      .pricing-grid{grid-template-columns:repeat(2,1fr);}
+      .enquiry-layout{grid-template-columns:1fr;gap:44px;}
+    }
+    @media(max-width:900px){.courses-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:860px){
+      .testimonials-grid{grid-template-columns:1fr;}
+      .steps{grid-template-columns:repeat(2,1fr);gap:32px;}
+      .steps::before{display:none;}
+    }
+    @media(max-width:600px){
+      nav{padding:0 20px;}
+      .nav-links{display:none;}
+      .hero{padding:60px 20px 50px;}
+      .section{padding:60px 20px;}
+      .trust-strip{padding:20px;gap:20px;}
+      .courses-grid{grid-template-columns:1fr;}
+      .pricing-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto;}
+      .cta-banner{padding:44px 24px;}
+      footer{padding:40px 20px 24px;}
+      .form-card{padding:28px 20px;}
+      .field-row{grid-template-columns:1fr;}
+    }
+
+    /* ── COURSE EXPAND / COLLAPSE ────────────────────────────── */
+    .course-card-header{padding:20px 22px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:14px;user-select:none;}
+    .course-card-header:hover .course-name{color:var(--teal);}
+    .card-header-left{flex:1;min-width:0;}
+    .expand-toggle{width:28px;height:28px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px;transition:all .2s;color:var(--ink-3);}
+    .course-card.open .expand-toggle{background:var(--teal);border-color:var(--teal);color:white;transform:rotate(45deg);}
+    .expand-toggle svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.5;fill:none;transition:transform .2s;}
+    .course-drawer{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1);}
+    .course-card.open .course-drawer{max-height:600px;}
+    .course-drawer-inner{padding:0 22px 18px;}
+    .course-drawer-inner .course-intro{margin-bottom:14px;}
+    .course-drawer-inner .outcomes-label{margin-bottom:8px;}
+    .course-drawer-inner .outcome-list{margin-bottom:12px;}
+    .course-drawer-inner .section-label{margin-bottom:6px;}
+    .course-card-top{padding:0;}
+    /* card no longer needs flex:1 on course-card-top since header is separate */
+    .course-card-top{padding:0 22px 14px;}
+
+    /* ── CHATBOT WIDGET ──────────────────────────────────────── */
+    #chat-btn{position:fixed;bottom:28px;right:28px;z-index:1000;width:58px;height:58px;border-radius:50%;background:linear-gradient(145deg,var(--teal),#0d8f75);box-shadow:0 6px 24px rgba(26,171,139,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;}
+    #chat-btn:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(26,171,139,.5);}
+    #chat-btn svg{width:26px;height:26px;fill:white;}
+    .chat-badge{position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:#ef4444;border-radius:50%;font-size:.6rem;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;border:2px solid white;animation:badgepop .3s ease;}
+    @keyframes badgepop{from{transform:scale(0)}to{transform:scale(1)}}
+    #chat-window{position:fixed;bottom:100px;right:28px;z-index:999;width:380px;height:520px;background:var(--white);border-radius:var(--radius-xl);box-shadow:0 20px 60px rgba(0,0,0,.18),0 6px 20px rgba(0,0,0,.1);display:flex;flex-direction:column;overflow:hidden;transition:opacity .25s,transform .25s;opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;}
+    #chat-window.open{opacity:1;transform:none;pointer-events:all;}
+    .chat-head{background:linear-gradient(135deg,#0d7a63,var(--teal));padding:18px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+    .chat-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .chat-head-info{flex:1;}
+    .chat-head-info strong{display:block;font-size:.92rem;font-weight:700;color:white;}
+    .chat-head-info span{font-size:.75rem;color:rgba(255,255,255,.75);}
+    .chat-online{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 0 2px rgba(255,255,255,.3);}
+    #chat-close{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;font-size:1.1rem;line-height:1;transition:background .15s;}
+    #chat-close:hover{background:rgba(255,255,255,.3);}
+    .chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+    .chat-messages::-webkit-scrollbar{width:4px;}
+    .chat-messages::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:4px;}
+    .chat-msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:.85rem;line-height:1.55;animation:msgIn .2s ease;}
+    @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .chat-msg.bot{background:var(--bg);color:var(--ink-2);border-bottom-left-radius:4px;align-self:flex-start;}
+    .chat-msg.user{background:var(--teal);color:white;border-bottom-right-radius:4px;align-self:flex-end;}
+    .chat-msg.typing{background:var(--bg);align-self:flex-start;padding:12px 16px;}
+    .typing-dots{display:flex;gap:4px;align-items:center;}
+    .typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--ink-4);animation:typedot 1.2s infinite;}
+    .typing-dots span:nth-child(2){animation-delay:.2s;}
+    .typing-dots span:nth-child(3){animation-delay:.4s;}
+    @keyframes typedot{0%,60%,100%{opacity:.3;transform:scale(.8)}30%{opacity:1;transform:scale(1)}}
+    .chat-msg a{color:var(--teal);text-decoration:underline;}
+    .chat-msg.bot a{color:var(--teal-dark);}
+    .chat-suggestions{padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:6px;}
+    .chat-suggestion{font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:100px;border:1.5px solid var(--teal-mid);color:var(--teal-dark);background:var(--teal-light);cursor:pointer;transition:all .15s;white-space:nowrap;}
+    .chat-suggestion:hover{background:var(--teal);color:white;border-color:var(--teal);}
+    .chat-input-row{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:flex-end;flex-shrink:0;}
+    #chat-input{flex:1;font-family:var(--font);font-size:.88rem;border:1.5px solid var(--border);border-radius:20px;padding:9px 14px;outline:none;resize:none;max-height:100px;overflow-y:auto;line-height:1.4;transition:border-color .15s;}
+    #chat-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,171,139,.1);}
+    #chat-send{width:38px;height:38px;border-radius:50%;background:var(--teal);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,transform .15s;}
+    #chat-send:hover{background:var(--teal-dark);transform:scale(1.05);}
+    #chat-send:disabled{background:var(--border-mid);cursor:not-allowed;transform:none;}
+    #chat-send svg{width:16px;height:16px;fill:white;}
+    .chat-powered{font-size:.65rem;color:var(--ink-4);text-align:center;padding:4px 0 8px;flex-shrink:0;}
+    @media(max-width:440px){#chat-window{width:calc(100vw - 24px);right:12px;bottom:90px;}#chat-btn{right:16px;bottom:16px;}}
+
+    /* ── POLICY MODALS ───────────────────────────────────────── */
+    .policy-overlay{position:fixed;inset:0;z-index:2000;background:rgba(17,24,39,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;}
+    .policy-overlay.open{opacity:1;pointer-events:all;}
+    .policy-modal{background:var(--white);border-radius:var(--radius-xl);max-width:740px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.22);transform:translateY(20px) scale(.97);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+    .policy-overlay.open .policy-modal{transform:none;}
+    .policy-modal-head{padding:26px 32px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .policy-modal-head h3{font-size:1.2rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+    .policy-modal-badge{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-light);border:1px solid var(--teal-mid);padding:3px 10px;border-radius:100px;margin-left:12px;}
+    .policy-close-btn{width:34px;height:34px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--ink-3);transition:all .15s;flex-shrink:0;}
+    .policy-close-btn:hover{background:var(--bg2);color:var(--ink);border-color:var(--border-mid);}
+    .policy-divider{height:1px;background:var(--border);margin:20px 32px 0;}
+    .policy-body{overflow-y:auto;padding:24px 32px 32px;flex:1;line-height:1.75;color:var(--ink-2);font-size:.9rem;}
+    .policy-body::-webkit-scrollbar{width:5px;}
+    .policy-body::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:4px;}
+    .policy-body h4{font-size:1rem;font-weight:700;color:var(--ink);margin:22px 0 8px;letter-spacing:-.01em;}
+    .policy-body h4:first-child{margin-top:0;}
+    .policy-body p{margin-bottom:12px;color:var(--ink-3);}
+    .policy-body ul{margin:0 0 12px 18px;color:var(--ink-3);}
+    .policy-body ul li{margin-bottom:5px;}
+    .policy-body strong{color:var(--ink-2);}
+    .policy-body .policy-updated{font-size:.78rem;color:var(--ink-4);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .policy-body a{color:var(--teal);text-decoration:underline;}
+    .policy-footer-row{padding:16px 32px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;}
+    @media(max-width:600px){.policy-modal-head{padding:20px 20px 0;}.policy-divider{margin:16px 20px 0;}.policy-body{padding:18px 20px 24px;}.policy-footer-row{padding:14px 20px 20px;}}
+
+    /* ── POLICY MODALS ───────────────────────────────────────── */
+    .policy-overlay{position:fixed;inset:0;z-index:2000;background:rgba(17,24,39,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;}
+    .policy-overlay.open{opacity:1;pointer-events:all;}
+    .policy-modal{background:var(--white);border-radius:var(--radius-xl);max-width:740px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.22);transform:translateY(20px) scale(.97);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+    .policy-overlay.open .policy-modal{transform:none;}
+    .policy-modal-head{padding:26px 32px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .policy-modal-head h3{font-size:1.2rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+    .policy-modal-badge{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-light);border:1px solid var(--teal-mid);padding:3px 10px;border-radius:100px;margin-left:12px;}
+    .policy-close-btn{width:34px;height:34px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--ink-3);transition:all .15s;flex-shrink:0;}
+    .policy-close-btn:hover{background:var(--bg2);color:var(--ink);border-color:var(--border-mid);}
+    .policy-divider{height:1px;background:var(--border);margin:20px 32px 0;}
+    .policy-body{overflow-y:auto;padding:24px 32px 32px;flex:1;line-height:1.75;color:var(--ink-2);font-size:.9rem;}
+    .policy-body::-webkit-scrollbar{width:5px;}
+    .policy-body::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:4px;}
+    .policy-body h4{font-size:1rem;font-weight:700;color:var(--ink);margin:22px 0 8px;letter-spacing:-.01em;}
+    .policy-body h4:first-child{margin-top:0;}
+    .policy-body p{margin-bottom:12px;color:var(--ink-3);}
+    .policy-body ul{margin:0 0 12px 18px;color:var(--ink-3);}
+    .policy-body ul li{margin-bottom:5px;}
+    .policy-body strong{color:var(--ink-2);}
+    .policy-body .policy-updated{font-size:.78rem;color:var(--ink-4);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .policy-body a{color:var(--teal);text-decoration:underline;}
+    .policy-footer-row{padding:16px 32px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;}
+    @media(max-width:600px){.policy-modal-head{padding:20px 20px 0;}.policy-divider{margin:16px 20px 0;}.policy-body{padding:18px 20px 24px;}.policy-footer-row{padding:14px 20px 20px;}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,3 23,8.5 12,14 1,8.5" fill="white" opacity=".95"/>
+        <path d="M19 10.5v5c0 2.2-3.13 4-7 4s-7-1.8-7-4v-5" stroke="white" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".9"/>
+        <line x1="23" y1="8.5" x2="23" y2="14.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="23" cy="15.5" r="1.2" fill="white" opacity=".85"/>
+      </svg>
+    </div>
+    TckLearn
+  </div>
+  <div class="nav-links">
+    <a href="#courses">Courses</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#enquire">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a href="mailto:sales@tcklearn.com" class="btn btn-outline btn-sm">sales@tcklearn.com</a>
+    <a href="#enquire" class="btn btn-primary btn-sm">Enquire Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <div class="live-dot"></div>
+    Live IT &amp; Tech Training — Africa &amp; Global
+  </div>
+  <h1>Real experts. Real-time sessions.<br><em>Results that advance careers.</em></h1>
+  <p class="hero-sub">TckLearn delivers live, personalised IT and technology training with verified industry professionals — 20 courses, via webcam, built around your schedule and goals.</p>
+  <div class="hero-cta">
+    <a href="#enquire" class="btn btn-primary btn-xl">Enquire about a plan</a>
+    <a href="#courses" class="btn btn-secondary btn-lg">Explore 20 courses ↓</a>
+  </div>
+  <p class="hero-cta-note">&#10003; No platform lock-in &nbsp;·&nbsp; &#10003; Flexible scheduling &nbsp;·&nbsp; &#10003; Plans from £50/month</p>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><div class="trust-icon" style="background:var(--teal-light)">🎓</div><span><strong>2,400+</strong> learners trained</span></div>
+  <div class="trust-item"><div class="trust-icon" style="background:#fff8e7">⭐</div><span><strong>4.9/5</strong> average rating</span></div>
+  <div class="trust-item"><div class="trust-icon" style="background:#fef2f2">🎯</div><span><strong>98%</strong> satisfaction rate</span></div>
+  <div class="trust-item"><div class="trust-icon" style="background:#ede9fe">👨‍💻</div><span><strong>48</strong> expert tutors</span></div>
+  <div class="trust-item"><div class="trust-icon" style="background:#dbeafe">📚</div><span><strong>20</strong> specialist courses</span></div>
+</div>
+
+<!-- COURSES -->
+<section class="section section-alt" id="courses">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Curriculum</div>
+      <h2>20 expert-led courses across every discipline</h2>
+      <p class="section-desc">Every session is live and 1-on-1 with a verified industry professional — tailored to your goals, your pace and your level.</p>
+    </div>
+
+    <div class="course-filter reveal">
+      <button class="filter-btn active" onclick="filterCourses('all')">All courses</button>
+      <button class="filter-btn" onclick="filterCourses('tech')">Technology &amp; Engineering</button>
+      <button class="filter-btn" onclick="filterCourses('data')">Data &amp; AI</button>
+      <button class="filter-btn" onclick="filterCourses('business')">Business &amp; Strategy</button>
+      <button class="filter-btn" onclick="filterCourses('security')">Security &amp; Networks</button>
+    </div>
+
+    <div class="courses-grid" id="courses-grid">
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:var(--teal-light)">💻</div>
+            <div class="course-name">Python Programming</div>
+            <div class="course-tagline">The world's most versatile language — from automation to AI</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Python underpins data science, automation, web development and AI. This course covers the core language fundamentals — syntax, data structures, functions and object-oriented programming — giving you a solid foundation to build on in any direction.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Core syntax — variables, loops, functions, classes and modules</li><li>File handling, automation scripts and working with APIs</li><li>Data analysis basics with Pandas and NumPy</li><li>Error handling, testing and clean code principles</li><li>Building and running real Python projects end to end</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Python 3</span><span class="tool-tag">VS Code</span><span class="tool-tag">Git</span><span class="tool-tag">Pandas</span><span class="tool-tag">FastAPI</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:var(--teal-light);color:var(--teal-dark)">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#ede9fe">🔐</div>
+            <div class="course-name">Cybersecurity</div>
+            <div class="course-tagline">Defend systems and networks with practical, hands-on security skills</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Cybersecurity teaches how to protect systems, networks and data from attack. The course covers core security principles — confidentiality, integrity and availability — alongside foundational skills in threat analysis, network defence, ethical hacking and incident response.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Network security — firewalls, VPNs, IDS/IPS and packet analysis</li><li>Ethical hacking methodology and penetration testing basics</li><li>OWASP Top 10 web vulnerabilities and how to remediate them</li><li>Incident response, log analysis and digital forensics fundamentals</li><li>Certification preparation: CompTIA Security+, CEH</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Kali Linux</span><span class="tool-tag">Wireshark</span><span class="tool-tag">Nmap</span><span class="tool-tag">Burp Suite</span><span class="tool-tag">Metasploit</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#ede9fe;color:#5b21b6">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#dbeafe">🌐</div>
+            <div class="course-name">Web Design &amp; Development</div>
+            <div class="course-tagline">Build responsive, full-stack web applications from the ground up</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Web development is the skill behind every website, web app and online platform. This course introduces the fundamental building blocks — HTML, CSS and JavaScript — then progresses through modern frameworks and back-end development to equip you to build complete, deployable applications.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>HTML5 and CSS3 — structure, styling and responsive layout</li><li>JavaScript fundamentals and modern ES6+ features</li><li>React — component-based UIs and state management</li><li>Node.js and Express — server-side logic and REST APIs</li><li>Git, deployment and professional development workflow</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">HTML/CSS</span><span class="tool-tag">JavaScript</span><span class="tool-tag">React</span><span class="tool-tag">Node.js</span><span class="tool-tag">Git</span><span class="tool-tag">Vercel</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#dbeafe;color:#1e40af">Beginner → Pro</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fef3c7">☁️</div>
+            <div class="course-name">Cloud Computing</div>
+            <div class="course-tagline">Architect, deploy and manage infrastructure on AWS, Azure and GCP</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Cloud computing delivers computing resources — servers, storage, databases and networking — over the internet. This course covers the core concepts of cloud infrastructure, the major platforms (AWS, Azure, GCP), and the skills needed to deploy, manage and secure cloud environments.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Core cloud concepts — IaaS, PaaS, SaaS and the shared responsibility model</li><li>Key services across AWS, Azure and Google Cloud Platform</li><li>Infrastructure as Code with Terraform and CloudFormation</li><li>Containers with Docker and orchestration with Kubernetes</li><li>Certification preparation: AWS SAA, AZ-104, GCP ACE</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">AWS</span><span class="tool-tag">Azure</span><span class="tool-tag">GCP</span><span class="tool-tag">Terraform</span><span class="tool-tag">Docker</span><span class="tool-tag">Kubernetes</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fef3c7;color:#92400e">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f0fdf4">🤖</div>
+            <div class="course-name">AI &amp; Machine Learning</div>
+            <div class="course-tagline">Understand, build and deploy intelligent systems that solve real problems</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Artificial intelligence and machine learning enable computers to learn from data and make decisions. This course covers the foundational concepts — supervised and unsupervised learning, neural networks and model evaluation — giving you the skills to build and deploy working ML systems.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Supervised learning — regression, classification and model evaluation</li><li>Unsupervised learning — clustering, dimensionality reduction</li><li>Neural networks and deep learning with TensorFlow and PyTorch</li><li>Natural Language Processing and working with LLMs</li><li>MLOps — model deployment, monitoring and retraining</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Python</span><span class="tool-tag">TensorFlow</span><span class="tool-tag">PyTorch</span><span class="tool-tag">scikit-learn</span><span class="tool-tag">Jupyter</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f0fdf4;color:#166534">Advanced</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fef2f2">🗄️</div>
+            <div class="course-name">Database &amp; SQL</div>
+            <div class="course-tagline">Design, query and optimise relational and NoSQL databases</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Databases are the foundation of every application and data system. This course teaches how to design well-structured schemas, write effective SQL queries and optimise database performance — covering both relational databases (PostgreSQL, MySQL) and NoSQL (MongoDB).</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>SQL fundamentals — SELECT, JOIN, GROUP BY, subqueries and CTEs</li><li>Schema design — normalisation, indexing and foreign key relationships</li><li>Query performance — reading EXPLAIN plans and tuning slow queries</li><li>PostgreSQL and MySQL in production environments</li><li>NoSQL with MongoDB — document modelling and aggregation pipelines</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">PostgreSQL</span><span class="tool-tag">MySQL</span><span class="tool-tag">MongoDB</span><span class="tool-tag">Redis</span><span class="tool-tag">pgAdmin</span><span class="tool-tag">dbt</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fef2f2;color:#991b1b">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#e0f2fe">📋</div>
+            <div class="course-name">Digital Project Management &amp; Agile Execution</div>
+            <div class="course-tagline">Lead digital projects from planning through delivery using Agile and Scrum</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Digital Project Management covers how to plan, manage and deliver technology projects on time and within scope. The course introduces Agile principles and Scrum practices — sprints, backlogs, retrospectives — alongside the fundamentals of stakeholder management, risk and project governance.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Agile values and the Scrum framework — roles, ceremonies and artefacts</li><li>Project initiation — scope definition, stakeholder mapping and planning</li><li>Managing sprints, backlogs and iterative delivery cycles</li><li>Risk identification, change control and escalation processes</li><li>Reporting, retrospectives and continuous improvement practices</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Jira</span><span class="tool-tag">Confluence</span><span class="tool-tag">Trello</span><span class="tool-tag">MS Project</span><span class="tool-tag">Miro</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#e0f2fe;color:#0369a1">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fef9c3">⚙️</div>
+            <div class="course-name">IT Service Excellence &amp; Operations Management</div>
+            <div class="course-tagline">Deliver and manage IT services to professional standards using ITIL principles</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">IT Service Management (ITSM) ensures that IT services are delivered reliably and efficiently to meet business needs. This course covers the ITIL framework — incident, problem, change and service level management — and the operational practices that underpin high-performing IT departments.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>ITIL 4 core concepts — the service value system and four dimensions</li><li>Incident and problem management — detection, triage and root cause analysis</li><li>Change and release management processes and governance</li><li>Service level agreements, KPIs and continual service improvement</li><li>ITSM tooling — ServiceNow, Jira Service Management and Zendesk</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">ServiceNow</span><span class="tool-tag">Jira Service Mgmt</span><span class="tool-tag">Zendesk</span><span class="tool-tag">ITIL 4</span><span class="tool-tag">Confluence</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fef9c3;color:#854d0e">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f3e8ff">📊</div>
+            <div class="course-name">Digital Business Strategy &amp; Technology Management</div>
+            <div class="course-tagline">Align technology investments with business goals for sustainable competitive advantage</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Digital business strategy is about using technology deliberately to create value and competitive advantage. This course covers digital transformation frameworks, IT strategy, technology governance and how leaders evaluate and prioritise technology investments in line with organisational goals.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Digital transformation — drivers, frameworks and maturity models</li><li>IT strategy and enterprise architecture fundamentals</li><li>Technology portfolio management and investment prioritisation</li><li>Data governance, compliance and risk management</li><li>Measuring digital performance — KPIs, OKRs and value realisation</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">TOGAF basics</span><span class="tool-tag">OKRs</span><span class="tool-tag">Power BI</span><span class="tool-tag">Balanced Scorecard</span><span class="tool-tag">PESTLE</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f3e8ff;color:#7e22ce">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fce7f3">🚀</div>
+            <div class="course-name">Tech Venture Creation &amp; Startup Finance</div>
+            <div class="course-tagline">Build, validate and finance a technology startup from idea to launch</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Tech Venture Creation equips aspiring founders and intrapreneurs with the knowledge to build and fund a technology business. The course covers ideation, business model design, MVP development, go-to-market strategy, startup finance and the fundamentals of raising investment.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Idea validation — customer discovery, problem-solution fit and MVPs</li><li>Business model design — the Business Model Canvas and revenue models</li><li>Startup finance — unit economics, cash flow and runway management</li><li>Fundraising fundamentals — bootstrapping, angels, VCs and grants</li><li>Go-to-market strategy, early growth tactics and product-market fit</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Lean Canvas</span><span class="tool-tag">Figma (MVP)</span><span class="tool-tag">Excel</span><span class="tool-tag">Pitch tools</span><span class="tool-tag">Notion</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fce7f3;color:#9d174d">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#ecfdf5">🛠️</div>
+            <div class="course-name">IT Support Systems &amp; Infrastructure Management</div>
+            <div class="course-tagline">Support, maintain and lead the IT infrastructure that keeps organisations running</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">IT Support and Infrastructure covers the technical and operational skills needed to maintain the hardware, software and network environments that businesses depend on. This course moves from helpdesk fundamentals through to infrastructure management, leadership of support teams and service improvement.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Helpdesk operations — ticketing, triage and resolution best practices</li><li>Hardware and operating systems — Windows, Linux and macOS administration</li><li>Active Directory, user management and Group Policy fundamentals</li><li>Networking basics — TCP/IP, DNS, DHCP and troubleshooting connectivity</li><li>Leading IT support teams — SLAs, escalation and performance management</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Windows Server</span><span class="tool-tag">Active Directory</span><span class="tool-tag">Linux</span><span class="tool-tag">Cisco</span><span class="tool-tag">ServiceNow</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#ecfdf5;color:#065f46">Beginner → Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f0fdfa">📡</div>
+            <div class="course-name">Smart Systems &amp; IoT Technologies</div>
+            <div class="course-tagline">Design and build connected devices and smart systems using IoT technologies</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">The Internet of Things connects physical devices to networks and the cloud, enabling smart buildings, industrial automation and consumer technology. This course covers IoT architecture, sensor integration, embedded programming, communication protocols and cloud connectivity for real-world systems.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>IoT architecture — sensors, actuators, gateways and cloud platforms</li><li>Embedded programming with Arduino and Raspberry Pi</li><li>Communication protocols — MQTT, HTTP, Bluetooth and LoRaWAN</li><li>Cloud connectivity — AWS IoT, Azure IoT Hub and data pipelines</li><li>Security considerations in connected systems and edge computing</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Arduino</span><span class="tool-tag">Raspberry Pi</span><span class="tool-tag">MQTT</span><span class="tool-tag">AWS IoT</span><span class="tool-tag">Node-RED</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f0fdfa;color:#134e4a">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fff7ed">🏗️</div>
+            <div class="course-name">Data Architecture &amp; Information Modelling</div>
+            <div class="course-tagline">Design scalable data systems and models that serve the whole organisation</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Data architecture defines how data is collected, stored, transformed and accessed across an organisation. This course covers data modelling techniques, warehouse and lakehouse design, data governance and the architectural patterns that underpin reliable, scalable data platforms.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Conceptual, logical and physical data modelling — ER diagrams and normalisation</li><li>Data warehousing — star and snowflake schemas, dimensional modelling</li><li>Modern data lakehouse architecture — Delta Lake, Apache Iceberg</li><li>Data governance — cataloguing, lineage, quality and master data management</li><li>ETL/ELT pipelines — dbt, Apache Spark and orchestration with Airflow</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">dbt</span><span class="tool-tag">Apache Spark</span><span class="tool-tag">Snowflake</span><span class="tool-tag">BigQuery</span><span class="tool-tag">Airflow</span><span class="tool-tag">dbt</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fff7ed;color:#9a3412">Advanced</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f1f5f9">🖥️</div>
+            <div class="course-name">Computer Architecture &amp; Intelligent Systems</div>
+            <div class="course-tagline">Understand how computers work at a hardware level and how AI is embedded into them</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Computer architecture explains how processors, memory and hardware components work together to execute software. This course covers the fundamental principles of computing hardware, instruction sets and system organisation, then extends into how intelligent systems and accelerators are designed for AI workloads.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>CPU fundamentals — instruction sets, registers, pipelining and caching</li><li>Memory hierarchy — RAM, cache levels, virtual memory and storage</li><li>Parallel computing — multi-core processors and GPU architecture</li><li>Embedded and edge systems — microcontrollers and real-time constraints</li><li>Hardware acceleration for AI — GPUs, TPUs and FPGA basics</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Assembly basics</span><span class="tool-tag">C</span><span class="tool-tag">Python</span><span class="tool-tag">RISC-V</span><span class="tool-tag">CUDA basics</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f1f5f9;color:#334155">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#eff6ff">🔗</div>
+            <div class="course-name">Network Engineering &amp; Cyber Infrastructure</div>
+            <div class="course-tagline">Design, build and secure the networks that connect modern organisations</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Network engineering covers the design, configuration and management of the physical and logical networks organisations rely on. This course spans network fundamentals through advanced routing, switching and security — with a strong emphasis on building secure, resilient infrastructure.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Network fundamentals — OSI model, TCP/IP, subnetting and addressing</li><li>Routing and switching — VLANs, STP, OSPF and BGP configuration</li><li>Network security — firewalls, VPNs, NAC and zero-trust principles</li><li>Wireless networking — 802.11 standards, enterprise Wi-Fi and security</li><li>Network monitoring, troubleshooting and performance optimisation</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Cisco IOS</span><span class="tool-tag">Wireshark</span><span class="tool-tag">pfSense</span><span class="tool-tag">Juniper</span><span class="tool-tag">GNS3</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#eff6ff;color:#1d4ed8">Intermediate</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f8fafc">🔧</div>
+            <div class="course-name">Integrated Hardware &amp; Software Systems Design</div>
+            <div class="course-tagline">Bridge hardware and software to design complete, working technical systems</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Integrated systems design brings together hardware, firmware and software to create complete technical solutions. This course covers the principles of co-design — how hardware and software decisions interact — and gives you the skills to specify, prototype and test systems where both layers must work together reliably.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Systems engineering — requirements, architecture and design trade-offs</li><li>Hardware-software interfaces — GPIO, SPI, I2C, UART protocols</li><li>Firmware development in C and embedded Linux</li><li>Prototyping and testing — simulation, breadboarding and validation</li><li>Real-time operating systems (RTOS) and scheduler fundamentals</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">C/C++</span><span class="tool-tag">FreeRTOS</span><span class="tool-tag">Raspberry Pi</span><span class="tool-tag">MATLAB</span><span class="tool-tag">Keil MDK</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f8fafc;color:#475569">Advanced</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fafaf9">🧠</div>
+            <div class="course-name">Computational Problem Solving &amp; Programming Skills</div>
+            <div class="course-tagline">Build the logical thinking and programming foundations every technologist needs</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Computational problem solving teaches you to break complex problems into structured, logical steps that a computer can execute. This course builds core programming skills and algorithmic thinking — the bedrock of every technical discipline, whether you go on to software engineering, data science or systems design.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Computational thinking — decomposition, pattern recognition and abstraction</li><li>Algorithms — searching, sorting and Big O complexity fundamentals</li><li>Data structures — arrays, stacks, queues, linked lists, trees and graphs</li><li>Programming fundamentals in Python — clean, structured, testable code</li><li>Problem-solving practice with real coding exercises and challenges</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Python</span><span class="tool-tag">VS Code</span><span class="tool-tag">Git</span><span class="tool-tag">LeetCode-style exercises</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fafaf9;color:#57534e">Beginner</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fff1f2">📣</div>
+            <div class="course-name">Digital Advertising Technologies, Platform Economy &amp; Performance Marketing</div>
+            <div class="course-tagline">Plan, execute and optimise digital ad campaigns across all major platforms</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Digital advertising technology powers the programmatic buying, targeting and measurement systems behind online marketing. This course covers the fundamentals of paid search, social advertising, display and programmatic — alongside the analytics tools needed to measure and continuously improve campaign performance.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Paid search fundamentals — Google Ads structure, bidding and Quality Score</li><li>Social advertising — Meta, LinkedIn and TikTok Ads targeting and creative</li><li>Programmatic display — DSPs, RTB, ad exchanges and audience segments</li><li>Tracking and attribution — GA4, Meta Pixel, UTM parameters and conversion funnels</li><li>Reporting and optimisation — A/B testing, ROAS and performance dashboards</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Google Ads</span><span class="tool-tag">Meta Ads</span><span class="tool-tag">GA4</span><span class="tool-tag">Google Tag Manager</span><span class="tool-tag">Looker Studio</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fff1f2;color:#9f1239">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#f0fdf4">📈</div>
+            <div class="course-name">Business Analytics &amp; Spreadsheet Intelligence</div>
+            <div class="course-tagline">Turn raw data into decisions using Excel, data analysis and business intelligence</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Business analytics is the practice of using data to inform better decisions. This course starts with Excel mastery — formulas, pivot tables and dashboards — then extends into statistical analysis, data visualisation and introductory business intelligence tools to give you a complete analytical skill set.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Excel mastery — VLOOKUP, INDEX/MATCH, pivot tables and dynamic arrays</li><li>Data cleaning and transformation — Power Query and structured data preparation</li><li>Statistical fundamentals — averages, distributions, correlation and regression</li><li>Data visualisation — charts, dashboards and storytelling with data</li><li>Introduction to Power BI and SQL for business analysts</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">Excel</span><span class="tool-tag">Power Query</span><span class="tool-tag">Power BI</span><span class="tool-tag">SQL</span><span class="tool-tag">Google Sheets</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#f0fdf4;color:#166534">All levels</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-card-header" onclick="toggleCard(this)">
+          <div class="card-header-left">
+            <div class="course-emoji" style="background:#fdf4ff">🔬</div>
+            <div class="course-name">Advanced Information Systems &amp; Emerging Technologies</div>
+            <div class="course-tagline">Explore the systems, architectures and technologies shaping the next decade</div>
+          </div>
+          <div class="expand-toggle"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+        </div>
+        <div class="course-drawer">
+          <div class="course-drawer-inner">
+            <p class="course-intro">Advanced information systems examines how complex, large-scale digital systems are designed, integrated and governed in organisations. The course spans enterprise architecture, emerging technologies — blockchain, edge computing, quantum computing basics — and how leaders evaluate and adopt new technology responsibly.</p>
+          <div class="outcomes-label">What you will cover</div>
+          <ul class="outcome-list">
+            <li>Enterprise information systems — ERP, CRM and system integration patterns</li><li>Blockchain fundamentals — distributed ledgers, smart contracts and use cases</li><li>Edge computing and fog architectures — use cases and infrastructure</li><li>Quantum computing concepts — qubits, superposition and near-term applications</li><li>Technology evaluation frameworks — assessing and adopting emerging tech</li>
+          </ul>
+          <div class="section-label">Tools &amp; technologies</div>
+          <div class="course-tools"><span class="tool-tag">AWS</span><span class="tool-tag">Ethereum basics</span><span class="tool-tag">APIs</span><span class="tool-tag">Gartner Hype Cycle</span><span class="tool-tag">Python</span></div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-level" style="background:#fdf4ff;color:#6b21a8">Advanced</span>
+          <a href="#enquire" class="course-cta-link">Enquire &#x2192;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Simple Process</div>
+      <h2>From enquiry to first session in 48 hours</h2>
+      <p class="section-desc">No lengthy onboarding. No software to install. Submit an enquiry, speak to our team, and get learning.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">📋</div>
+        <h3>Submit Enquiry</h3>
+        <p>Tell us your course interests and preferred plan. The form below takes under two minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">📞</div>
+        <h3>Discovery Call</h3>
+        <p>Our team contacts you within one working day to understand your goals and match the right tutor.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">📅</div>
+        <h3>Schedule Sessions</h3>
+        <p>Book live sessions at times that work for your team — evenings, weekends, any timezone.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">🚀</div>
+        <h3>Start Learning</h3>
+        <p>Join via webcam, share your screen, and receive expert-led hands-on training from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Pricing</div>
+      <h2>Plans for every team size</h2>
+      <p class="section-desc">All plans include access to all 20 courses, dedicated tutor matching and flexible scheduling. Billed monthly — cancel anytime with 30 days' notice.</p>
+    </div>
+    <div class="pricing-grid reveal">
+
+      <div class="plan-card">
+        <div class="plan-tier">Personal</div>
+        <div class="plan-seats">👤 1 learner</div>
+        <div class="plan-price"><span class="currency">£</span><span class="amount">50</span></div>
+        <div class="plan-per">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-yes">✓</span> 1 user seat</li>
+          <li><span class="feat-yes">✓</span> Access to all 20 courses</li>
+          <li><span class="feat-yes">✓</span> Live 1-on-1 webcam sessions</li>
+          <li><span class="feat-yes">✓</span> Flexible scheduling</li>
+          <li><span class="feat-yes">✓</span> Session recordings</li>
+          <li><span class="feat-yes">✓</span> Email support</li>
+        </ul>
+        <a href="#enquire" class="btn btn-outline btn-plan" onclick="prefillPlan('Personal — £50/month (1 learner)')">Enquire — Personal</a>
+      </div>
+
+      <div class="plan-card popular">
+        <div class="popular-badge">&#x2B50; Most Popular</div>
+        <div class="plan-tier">Pro</div>
+        <div class="plan-seats">👥 Up to 5 learners</div>
+        <div class="plan-price"><span class="currency">£</span><span class="amount">150</span></div>
+        <div class="plan-per">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-yes">✓</span> 5 user seats</li>
+          <li><span class="feat-yes">✓</span> Access to all 20 courses</li>
+          <li><span class="feat-yes">✓</span> 1-on-1 or small group sessions</li>
+          <li><span class="feat-yes">✓</span> Priority tutor matching</li>
+          <li><span class="feat-yes">✓</span> Session recordings &amp; notes</li>
+          <li><span class="feat-yes">✓</span> Live chat &amp; email support</li>
+        </ul>
+        <a href="#enquire" class="btn btn-primary btn-plan" onclick="prefillPlan('Pro — £150/month (up to 5 learners)')">Enquire — Pro</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Business</div>
+        <div class="plan-seats">🏢 Up to 50 learners</div>
+        <div class="plan-price"><span class="currency">£</span><span class="amount">250</span></div>
+        <div class="plan-per">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-yes">✓</span> 50 user seats</li>
+          <li><span class="feat-yes">✓</span> Access to all 20 courses</li>
+          <li><span class="feat-yes">✓</span> Group &amp; 1-on-1 sessions</li>
+          <li><span class="feat-yes">✓</span> Dedicated account manager</li>
+          <li><span class="feat-yes">✓</span> Progress reports &amp; analytics</li>
+          <li><span class="feat-yes">✓</span> Priority &amp; weekend scheduling</li>
+        </ul>
+        <a href="#enquire" class="btn btn-outline btn-plan" onclick="prefillPlan('Business — £250/month (up to 50 learners)')">Enquire — Business</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Enterprise</div>
+        <div class="plan-seats">🌐 Unlimited learners</div>
+        <div class="plan-price"><span class="currency">£</span><span class="amount">450</span></div>
+        <div class="plan-per">per month</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-yes">✓</span> Unlimited user seats</li>
+          <li><span class="feat-yes">✓</span> All courses + custom curriculum</li>
+          <li><span class="feat-yes">✓</span> Dedicated tutor team</li>
+          <li><span class="feat-yes">✓</span> Custom learning pathways</li>
+          <li><span class="feat-yes">✓</span> SLA &amp; org-wide reporting</li>
+          <li><span class="feat-yes">✓</span> White-label &amp; SSO options</li>
+        </ul>
+        <a href="#enquire" class="btn btn-outline btn-plan" onclick="prefillPlan('Enterprise — £450/month (unlimited learners)')">Enquire — Enterprise</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:.85rem;color:var(--ink-4)">Volume discounts and annual pricing available. <a href="#enquire" style="color:var(--teal);font-weight:600">Speak to our team.</a></p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Client Stories</div>
+      <h2>Results our learners have achieved</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Passed AWS Solutions Architect in three months. The live sessions are miles better than recorded courses — my tutor adjusted to exactly where I was stuck, not where the script said to be."</blockquote>
+        <div class="reviewer">
+          <div class="rev-av" style="background:linear-gradient(135deg,var(--teal),#0d8f75)">JK</div>
+          <div><div class="rev-name">Jamie K.</div><div class="rev-role">Cloud Engineer · London</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Leveraged front-end web development skills gained through TckLearn to obtain a Frontend Developer role.."</blockquote>
+        <div class="reviewer">
+          <div class="rev-av" style="background:linear-gradient(135deg,#3a7bd5,#5b5ea6)">AB</div>
+          <div><div class="rev-name">Ahmed B.</div><div class="rev-role">Student · Computer Science · Abuja</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We put five developers through the Pro plan on Python and AI tracks. Within eight weeks they were shipping ML-powered features independently. The ROI has been extraordinary."</blockquote>
+        <div class="reviewer">
+          <div class="rev-av" style="background:linear-gradient(135deg,#3a7bd5,#5b5ea6)">DM</div>
+          <div><div class="rev-name">David M.</div><div class="rev-role">CTO · FinTech Startup · Lagos</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Our security team worked through the Cybersecurity track ahead of an ISO 27001 audit. Every session was tailored to our actual infrastructure. We passed first time with no major findings."</blockquote>
+        <div class="reviewer">
+          <div class="rev-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">SR</div>
+          <div><div class="rev-name">Sasha R.</div><div class="rev-role">Head of IT · Professional Services · New York</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY -->
+<section class="section section-alt" id="enquire">
+  <div class="container">
+    <div class="enquiry-layout">
+      <div class="enquiry-info reveal">
+        <div class="eyebrow">Get In Touch</div>
+        <h2>Ready to build your team's tech capability?</h2>
+        <p>Tell us about your team and learning goals. We match you with the right tutor, plan and schedule — and reply within one working day.</p>
+        <div class="contact-row">
+          <div>
+            <div class="contact-item-label">Sales &amp; subscriptions</div>
+            <a href="mailto:sales@tcklearn.com" class="contact-item-link">&#x2709; sales@tcklearn.com</a>
+          </div>
+          <div>
+            <div class="contact-item-label">Technical support</div>
+            <a href="mailto:support@tcklearn.com" class="contact-item-link">&#x2709; support@tcklearn.com</a>
+          </div>
+        </div>
+        <div class="guarantees">
+          <div class="guarantee">
+            <div class="guarantee-icon" style="background:var(--teal-light)">&#x26A1;</div>
+            <div><strong>Response within 24 hours</strong><span>Every enquiry is reviewed and replied to within one working day, guaranteed.</span></div>
+          </div>
+          <div class="guarantee">
+            <div class="guarantee-icon" style="background:#ede9fe">&#127919;</div>
+            <div><strong>Tutor matched to your goals</strong><span>We match based on your industry, level and specific objectives — not random availability.</span></div>
+          </div>
+          <div class="guarantee">
+            <div class="guarantee-icon" style="background:#fef3c7">&#128197;</div>
+            <div><strong>Sessions fit your schedule</strong><span>Evenings, weekends, any timezone — learning fits around your work, not the other way round.</span></div>
+          </div>
+          <div class="guarantee">
+            <div class="guarantee-icon" style="background:#dbeafe">&#128260;</div>
+            <div><strong>No long-term contracts</strong><span>Change plan, pause or cancel with just 30 days' notice. No hidden fees, no lock-in.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Submit your enquiry</h3>
+        <p class="form-subtitle">Fill in the details below and our team will be in touch within one working day.</p>
+        <div id="form-alert"></div>
+
+        <!-- Netlify Form: data-netlify="true" enables Netlify Forms processing -->
+        <form
+          name="enquiry"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          id="enquiry-form"
+          onsubmit="handleFormSubmit(event)"
+        >
+          <!-- Hidden fields required by Netlify -->
+          <input type="hidden" name="form-name" value="enquiry"/>
+          <!-- Honeypot spam protection — keep hidden -->
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"/></label></p>
+
+          <div class="field-row">
+            <div class="field"><label>First name <span class="req">*</span></label><input type="text" name="first_name" id="f-first" placeholder="Jane" autocomplete="given-name" required/></div>
+            <div class="field"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" id="f-last" placeholder="Smith" autocomplete="family-name" required/></div>
+          </div>
+          <div class="field"><label>Email address <span class="req">*</span></label><input type="email" name="email" id="f-email" placeholder="jane@yourcompany.com" autocomplete="email" required/></div>
+          <div class="field-row">
+            <div class="field"><label>Organisation</label><input type="text" name="organisation" id="f-org" placeholder="Acme Ltd — or Individual" autocomplete="organization"/></div>
+            <div class="field"><label>Phone number</label><input type="tel" name="phone" id="f-phone" placeholder="+234 3300 000000" autocomplete="tel"/></div>
+          </div>
+          <div class="field">
+            <label>Course of interest <span class="req">*</span></label>
+            <select name="course" id="f-course" required>
+              <option value="">Select a course...</option>
+              <option>Python Programming</option>
+              <option>Cybersecurity</option>
+              <option>Web Design &amp; Development</option>
+              <option>Cloud Computing</option>
+              <option>AI &amp; Machine Learning</option>
+              <option>Database &amp; SQL</option>
+              <option>Digital Project Management &amp; Agile Execution</option>
+              <option>IT Service Excellence &amp; Operations Management</option>
+              <option>Digital Business Strategy &amp; Technology Management</option>
+              <option>Tech Venture Creation &amp; Startup Finance</option>
+              <option>IT Support Systems &amp; Infrastructure Management</option>
+              <option>Smart Systems &amp; IoT Technologies</option>
+              <option>Data Architecture &amp; Information Modelling</option>
+              <option>Computer Architecture &amp; Intelligent Systems</option>
+              <option>Network Engineering &amp; Cyber Infrastructure</option>
+              <option>Integrated Hardware &amp; Software Systems Design</option>
+              <option>Computational Problem Solving &amp; Programming Skills</option>
+              <option>Digital Advertising Technologies, Platform Economy &amp; Performance Marketing</option>
+              <option>Business Analytics &amp; Spreadsheet Intelligence</option>
+              <option>Advanced Information Systems &amp; Emerging Technologies</option>
+              <option>Multiple courses / Full curriculum</option>
+              <option>Not sure — help me choose</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Preferred plan <span class="req">*</span></label>
+            <select name="plan" id="f-plan" required>
+              <option value="">Select a plan...</option>
+              <option>Personal — £50/month (1 learner)</option>
+              <option>Pro — £150/month (up to 5 learners)</option>
+              <option>Business — £250/month (up to 50 learners)</option>
+              <option>Enterprise — £450/month (unlimited learners)</option>
+              <option>Not sure — help me choose</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tell us about your goals <span style="color:var(--ink-4);font-weight:400">(optional)</span></label>
+            <textarea name="message" id="f-message" placeholder="e.g. We have a team of 4 who need Python and cloud skills, targeting AWS certification within 6 months..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-md" id="submit-btn" style="width:100%;margin-top:4px;font-size:.95rem;padding:14px">Send enquiry &#x2192;</button>
+          <p class="form-note">By submitting you agree to our <a href="#">Privacy Policy</a>. We never share your details with third parties.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Start building your team's and students tech edge today</h2>
+      <p>Join 2,400+ learners and hundreds of teams and studnets already growing with TckLearn's live expert-led training.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+        <a href="#enquire" class="btn btn-white btn-xl">Enquire about a plan</a>
+        <a href="mailto:sales@tcklearn.com" class="btn btn-lg" style="background:rgba(255,255,255,.15);color:white;border:1.5px solid rgba(255,255,255,.3)">Email our sales team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,3 23,8.5 12,14 1,8.5" fill="white" opacity=".95"/>
+        <path d="M19 10.5v5c0 2.2-3.13 4-7 4s-7-1.8-7-4v-5" stroke="white" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".9"/>
+        <line x1="23" y1="8.5" x2="23" y2="14.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="23" cy="15.5" r="1.2" fill="white" opacity=".85"/>
+      </svg>
+      </div>
+          TckLearn
+        </div>
+        <p>Live IT &amp; Tech Training with verified industry professionals. 20 courses. Flexible, personalised, results-driven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:sales@tcklearn.com">sales@tcklearn.com</a></li>
+          <li><a href="mailto:support@tcklearn.com">support@tcklearn.com</a></li>
+          <li><a href="#enquire">Enquiry Form</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#" onclick="openPolicy('terms');return false;">Terms of Service</a></li>
+          <li><a href="#" onclick="openPolicy('privacy');return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="openPolicy('cookies');return false;">Cookies Policy</a></li>
+          <li><a href="#" onclick="openPolicy('refund');return false;">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 TckLearn Limited. All Rights Reserved.</span>
+      <div style="display:flex;gap:20px">
+        <a href="#" onclick="openPolicy('terms');return false;">Terms</a>
+        <a href="#" onclick="openPolicy('privacy');return false;">Privacy</a>
+        <a href="mailto:support@tcklearn.com">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+const ro = new IntersectionObserver(
+  es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  {threshold:.07}
+);
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ── Course filter ─────────────────────────────────────────────────────────────
+const CATEGORY_MAP = {
+  'Python Programming':                                          ['tech','data'],
+  'Cybersecurity':                                               ['security'],
+  'Web Design & Development':                                             ['tech'],
+  'Cloud Computing':                                             ['tech'],
+  'AI & Machine Learning':                                       ['data'],
+  'Database & SQL':                                              ['data'],
+  'Digital Project Management & Agile Execution':                ['business'],
+  'IT Service Excellence & Operations Management':               ['business'],
+  'Digital Business Strategy & Technology Management':           ['business'],
+  'Tech Venture Creation & Startup Finance':                     ['business'],
+  'IT Support Systems & Infrastructure Management':              ['tech'],
+  'Smart Systems & IoT Technologies':                             ['tech'],
+  'Data Architecture & Information Modeling':                    ['data'],
+  'Computer Architecture & Intelligent Systems':                 ['tech'],
+  'Network Engineering & Cyber Infrastructure':                  ['security','tech'],
+  'Integrated Hardware & Software Systems Design':               ['tech'],
+  'Computational Problem Solving & Programming Skills':          ['tech','data'],
+  'Digital Advertising Technologies, Platform Economy & Performance Marketing':    ['business'],
+  'Business Analytics & Spreadsheet Intelligence':               ['business','data'],
+  'Advanced Information Systems & Emerging Technologies':        ['tech','data'],
+};
+
+function filterCourses(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.course-card').forEach(card => {
+    const name = card.querySelector('.course-name')?.textContent.trim() || '';
+    const cats = CATEGORY_MAP[name] || [];
+    card.classList.toggle('hidden', cat !== 'all' && !cats.includes(cat));
+  });
+}
+
+// ── Plan prefill ──────────────────────────────────────────────────────────────
+function prefillPlan(label) {
+  const sel = document.getElementById('f-plan');
+  if (!sel) return;
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === label) { sel.selectedIndex = i; break; }
+  }
+  document.getElementById('enquire').scrollIntoView({behavior:'smooth'});
+}
+
+// ── Form ──────────────────────────────────────────────────────────────────────
+function gv(id) { return (document.getElementById(id)?.value||'').trim(); }
+
+function showAlert(msg, type) {
+  const el = document.getElementById('form-alert');
+  el.innerHTML = `<div class="alert alert-${type}" style="margin-bottom:16px">${msg}</div>`;
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function setBtnLoading(on) {
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = on;
+  btn.innerHTML = on ? '<span class="spinner"></span> Sending...' : 'Send enquiry &#x2192;';
+}
+
+function clearForm() {
+  document.getElementById('enquiry-form').reset();
+}
+
+/* ── Netlify Forms submission handler ───────────────────────────────────────
+   Netlify detects the form at build time (data-netlify="true") and processes
+   POST submissions. We encode as application/x-www-form-urlencoded which is
+   what Netlify Forms expects for AJAX submissions.
+   Notifications are configured in Netlify Dashboard →
+   Site → Forms → enquiry → Notifications → Email → tcklearn26@gmail.com
+────────────────────────────────────────────────────────────────────────────── */
+async function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const form = document.getElementById('enquiry-form');
+  const alertBox = document.getElementById('form-alert');
+  alertBox.innerHTML = '';
+
+  // Client-side validation
+  const first  = gv('f-first'), last   = gv('f-last');
+  const email  = gv('f-email'), course = gv('f-course');
+  const plan   = gv('f-plan');
+
+  if (!first || !last)       return showAlert('&#x26A0; Please enter your first and last name.','error');
+  if (!email)                return showAlert('&#x26A0; Please enter your email address.','error');
+  if (!email.includes('@'))  return showAlert('&#x26A0; Please enter a valid email address.','error');
+  if (!course)               return showAlert('&#x26A0; Please select a course of interest.','error');
+  if (!plan)                 return showAlert('&#x26A0; Please select a plan.','error');
+
+  setBtnLoading(true);
+
+  // Encode form data as URL-encoded string for Netlify
+  const data = new FormData(form);
+  const encoded = new URLSearchParams(data).toString();
+
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encoded
+    });
+
+    setBtnLoading(false);
+
+    if (res.ok) {
+      showAlert('&#x2705; Enquiry received! Our team will be in touch within one working day.', 'success');
+      clearForm();
+    } else {
+      throw new Error('Server error ' + res.status);
+    }
+  } catch (err) {
+    setBtnLoading(false);
+    showAlert('&#x26A0; Submission failed. Please email <a href="mailto:sales@tcklearn.com" style="color:var(--teal-dark);font-weight:600">sales@tcklearn.com</a> directly.', 'error');
+  }
+}
+</script>
+
+<!-- ── CHATBOT ──────────────────────────────────────────────────────────── -->
+<button id="chat-btn" onclick="toggleChat()" title="Chat with TckLearn Assistant">
+  <svg id="chat-icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+  <svg id="chat-icon-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+  <div class="chat-badge" id="chat-badge">1</div>
+</button>
+
+<div id="chat-window">
+  <div class="chat-head">
+    <div class="chat-avatar">🎓</div>
+    <div class="chat-head-info">
+      <strong>Therine</strong>
+      <span>Ask me anything about our courses</span>
+    </div>
+    <div class="chat-online"></div>
+    <button id="chat-close" onclick="toggleChat()" title="Close chat">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-suggestions" id="chat-suggestions">
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">What courses do you offer?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">How does pricing work?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">Can I try before I commit?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">How do sessions work?</button>
+  </div>
+  <div class="chat-input-row">
+    <textarea id="chat-input" placeholder="Ask a question…" rows="1" onkeydown="chatKeydown(event)" oninput="autoResize(this)"></textarea>
+    <button id="chat-send" onclick="sendChat()" title="Send">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+  <div class="chat-powered">Powered by Claude AI · <a href="#enquire" onclick="toggleChat()" style="color:var(--teal)">Speak to a human</a></div>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COURSE EXPAND / COLLAPSE
+// ═══════════════════════════════════════════════════════════════════════════
+function toggleCard(header) {
+  const card = header.closest('.course-card');
+  const isOpen = card.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.course-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CHATBOT
+// ═══════════════════════════════════════════════════════════════════════════
+const SYSTEM_PROMPT = `You are the TckLearn Assistant — a friendly, knowledgeable support bot for TckLearn, a live 1-on-1 IT and technology training platform.
+
+TckLearn offers 20 expert-led courses delivered via live webcam sessions with verified industry professionals:
+1. Python Programming (All levels)
+2. Cybersecurity (Intermediate)
+3. Web Design & Development (Beginner → Pro)
+4. Cloud Computing (Intermediate)
+5. AI & Machine Learning (Advanced)
+6. Database & SQL (All levels)
+7. Digital Project Management & Agile Execution (All levels)
+8. IT Service Excellence & Operations Management (Intermediate)
+9. Digital Business Strategy & Technology Management (Intermediate)
+10. Tech Venture Creation & Startup Finance (All levels)
+11. IT Support Systems & Infrastructure Management (Beginner → Intermediate)
+12. Smart Systems & IoT Technologies (Intermediate)
+13. Data Architecture & Information Modelling (Advanced)
+14. Computer Architecture & Intelligent Systems (Intermediate)
+15. Network Engineering & Cyber Infrastructure (Intermediate)
+16. Integrated Hardware & Software Systems Design (Advanced)
+17. Computational Problem Solving & Programming Skills (Beginner)
+18. Digital Advertising Technologies, Platform Economy & Performance Marketing (All levels)
+19. Business Analytics & Spreadsheet Intelligence (All levels)
+20. Advanced Information Systems & Emerging Technologies (Advanced)
+
+PRICING (billed monthly, cancel with 30 days notice):
+- Personal: £50/month — 1 learner
+- Pro: £150/month — up to 5 learners (most popular)
+- Business: £250/month — up to 50 learners
+- Enterprise: £450/month — unlimited learners + custom curriculum + dedicated tutor team
+
+HOW IT WORKS:
+1. Submit enquiry via the website form
+2. Team contacts within 1 working day for a discovery call
+3. Schedule sessions at times that suit you (evenings, weekends, any timezone)
+4. Join via webcam for live 1-on-1 training
+
+KEY FACTS:
+- All sessions are live and 1-on-1 with a verified industry professional
+- No platform lock-in, no long-term contracts
+- Flexible scheduling — evenings, weekends, any timezone
+- Contact: sales@tcklearn.com (sales), support@tcklearn.com (technical support)
+- Volume discounts and annual pricing available
+- Every plan includes session recordings
+
+TONE: Be warm, helpful and concise. Answer questions directly. If someone wants to enquire or book, direct them to the enquiry form on the page or email sales@tcklearn.com. Do not invent information not listed above. Keep responses under 120 words unless detail is genuinely needed.`;
+
+let chatHistory = [];
+let chatOpen = false;
+let chatInitialised = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chat-window');
+  const iconChat = document.getElementById('chat-icon-chat');
+  const iconClose = document.getElementById('chat-icon-close');
+  const badge = document.getElementById('chat-badge');
+
+  win.classList.toggle('open', chatOpen);
+  iconChat.style.display = chatOpen ? 'none' : 'block';
+  iconClose.style.display = chatOpen ? 'block' : 'none';
+  if (badge) badge.remove();
+
+  if (chatOpen && !chatInitialised) {
+    chatInitialised = true;
+    addBotMsg("Hi there! 👋 I'm the TckLearn Assistant. I can answer questions about our 20 courses, pricing, how sessions work, or anything else. What would you like to know?");
+  }
+  if (chatOpen) {
+    setTimeout(() => document.getElementById('chat-input')?.focus(), 200);
+  }
+}
+
+function addBotMsg(html) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg bot';
+  el.innerHTML = html;
+  document.getElementById('chat-messages').appendChild(el);
+  scrollChat();
+  return el;
+}
+
+function addUserMsg(text) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg user';
+  el.textContent = text;
+  document.getElementById('chat-messages').appendChild(el);
+  scrollChat();
+}
+
+function addTyping() {
+  const el = document.createElement('div');
+  el.className = 'chat-msg typing';
+  el.id = 'chat-typing';
+  el.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  document.getElementById('chat-messages').appendChild(el);
+  scrollChat();
+  return el;
+}
+
+function scrollChat() {
+  const msgs = document.getElementById('chat-messages');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideSuggestions() {
+  const s = document.getElementById('chat-suggestions');
+  if (s) s.style.display = 'none';
+}
+
+function sendSuggestion(btn) {
+  hideSuggestions();
+  const text = btn.textContent;
+  addUserMsg(text);
+  chatHistory.push({ role: 'user', content: text });
+  getAIReply();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = '';
+  hideSuggestions();
+  addUserMsg(text);
+  chatHistory.push({ role: 'user', content: text });
+  document.getElementById('chat-send').disabled = true;
+  await getAIReply();
+  document.getElementById('chat-send').disabled = false;
+}
+
+async function getAIReply() {
+  const typing = addTyping();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+
+    const data = await res.json();
+    typing.remove();
+
+    const reply = data.content?.[0]?.text || "I'm sorry, I couldn't process that. Please email sales@tcklearn.com and we'll help you directly.";
+    chatHistory.push({ role: 'assistant', content: reply });
+
+    // Convert plain URLs and **bold** to HTML
+    const formatted = reply
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>')
+      .replace(/\n/g, '<br>');
+    addBotMsg(formatted);
+
+  } catch (err) {
+    typing.remove();
+    addBotMsg("Sorry, something went wrong on my end. Please email <a href=\"mailto:sales@tcklearn.com\">sales@tcklearn.com</a> and we'll get back to you shortly.");
+  }
+}
+
+function chatKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChat();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+</script>
+
+<!-- ── POLICY MODALS ──────────────────────────────────────────────────────── -->
+<div class="policy-overlay" id="policy-overlay" onclick="overlayClick(event)">
+  <div class="policy-modal" id="policy-modal">
+    <div class="policy-modal-head">
+      <div style="display:flex;align-items:center;">
+        <h3 id="policy-title">Policy</h3>
+        <span class="policy-modal-badge" id="policy-badge">TckLearn Ltd</span>
+      </div>
+      <button class="policy-close-btn" onclick="closePolicy()" title="Close">&#x2715;</button>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <div class="policy-body" id="policy-body"></div>
+
+    <div class="policy-footer-row">
+      <button class="btn btn-outline btn-sm" onclick="closePolicy()">Close</button>
+
+      <!-- Updated button opens in new tab -->
+      <a href="mailto:support@tcklearn.com"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-primary btn-sm">
+         Contact us
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// POLICY MODALS
+// ═══════════════════════════════════════════════════════════════════════════
+const POLICIES = {
+
+  terms: {
+    title: 'Terms of Service',
+    content: `
+      <p class="policy-updated">Last updated: 1 January 2026 &nbsp;·&nbsp; Effective immediately</p>
+
+      <h4>1. Acceptance of Terms</h4>
+      <p>By accessing or using TckLearn's website, services or training sessions, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you must not use our services. These terms apply to all visitors, learners, and subscribers.</p>
+
+      <h4>2. Description of Service</h4>
+      <p>TckLearn provides live, 1-on-1 IT and technology training delivered via webcam by verified industry professionals. Our services include access to 20 specialist courses, tutor matching, session scheduling, recordings and associated support. Services are delivered under the plan selected at the time of enquiry.</p>
+
+      <h4>3. Subscription Plans & Payment</h4>
+      <p>TckLearn operates on a monthly subscription basis. Current plans are:</p>
+      <ul>
+        <li><strong>Personal</strong> — £50/month (1 learner)</li>
+        <li><strong>Pro</strong> — £150/month (up to 5 learners)</li>
+        <li><strong>Business</strong> — £250/month (up to 50 learners)</li>
+        <li><strong>Enterprise</strong> — £450/month (unlimited learners)</li>
+      </ul>
+      <p>Subscriptions begin upon written confirmation from TckLearn following an enquiry. Payment is due monthly in advance. Failure to pay within 7 days of the due date may result in suspension of access.</p>
+
+      <h4>4. Cancellation & Termination</h4>
+      <p>You may cancel your subscription at any time by providing 30 days' written notice to <a href="mailto:sales@tcklearn.com">sales@tcklearn.com</a>. You will retain access to sessions already scheduled within the notice period. TckLearn reserves the right to terminate access immediately if these Terms are breached, without liability or refund obligation.</p>
+
+      <h4>5. Tutor Matching & Session Scheduling</h4>
+      <p>TckLearn will use reasonable endeavours to match you with a suitable tutor within 2 working days of your subscription commencing. Sessions must be scheduled at mutually agreed times. We cannot guarantee specific tutor availability but will provide a suitable qualified alternative if your assigned tutor is unavailable.</p>
+
+      <h4>6. Acceptable Use</h4>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Record, distribute or republish session content without written consent from TckLearn</li>
+        <li>Share login credentials or subscription access with individuals not covered by your plan</li>
+        <li>Use the service for any unlawful purpose or to transmit harmful content</li>
+        <li>Misrepresent your identity, qualifications or intended use of the training</li>
+        <li>Attempt to reverse-engineer, scrape or copy any TckLearn proprietary materials</li>
+      </ul>
+
+      <h4>7. Intellectual Property</h4>
+      <p>All course materials, session recordings, curricula and platform content are the intellectual property of TckLearn Ltd or its licensors. Your subscription grants you a personal, non-transferable licence to access this content for your own learning. No content may be reproduced, redistributed or used commercially without prior written consent.</p>
+
+      <h4>8. Limitation of Liability</h4>
+      <p>TckLearn's liability for any claim arising from these terms is limited to the total subscription fees paid in the 3 months preceding the claim. We are not liable for indirect, incidental, consequential or punitive damages, loss of profit, loss of data, or failure to achieve a particular outcome from training.</p>
+
+      <h4>9. Governing Law</h4>
+      <p>These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be subject to the exclusive jurisdiction of the courts of the Federal Republic of Nigeria.</p>
+
+      <h4>10. Changes to Terms</h4>
+      <p>TckLearn may update these Terms at any time. We will notify active subscribers by email at least 14 days before material changes take effect. Continued use of the service after that date constitutes acceptance.</p>
+
+      <h4>11. Contact</h4>
+      <p>For any questions regarding these Terms, please contact us at <a href="mailto:support@tcklearn.com">support@tcklearn.com</a> or write to: TckLearn Ltd, Nigeria.</p>
+    `
+  },
+
+  privacy: {
+    title: 'Privacy Policy',
+    content: `
+      <p class="policy-updated">Last updated: 1 January 2026 &nbsp;·&nbsp; TckLearn Ltd is the data controller under GDPR.</p>
+
+      <h4>1. Who We Are</h4>
+      <p>TckLearn Ltd ("we", "us", "our") is a UK-based company providing live IT and technology training. We are committed to protecting your personal data in accordance with the General Data Protection Regulation (GDPR) and the Data Protection Act. Questions about this policy: <a href="mailto:support@tcklearn.com">support@tcklearn.com</a>.</p>
+
+      <h4>2. Data We Collect</h4>
+      <p>We collect and process the following categories of personal data:</p>
+      <ul>
+        <li><strong>Identity data:</strong> first name, last name, job title, organisation name</li>
+        <li><strong>Contact data:</strong> email address, telephone number, billing address</li>
+        <li><strong>Transaction data:</strong> subscription plan, payment records, invoice history</li>
+        <li><strong>Session data:</strong> session recordings (where consented), notes, scheduling preferences</li>
+        <li><strong>Technical data:</strong> IP address, browser type, device information, usage logs</li>
+        <li><strong>Communications data:</strong> enquiry form submissions, email correspondence, chat transcripts</li>
+      </ul>
+
+      <h4>3. Legal Basis for Processing</h4>
+      <p>We process your personal data under the following lawful bases:</p>
+      <ul>
+        <li><strong>Contract performance:</strong> to deliver the subscription service you have agreed to</li>
+        <li><strong>Legitimate interests:</strong> to improve our platform, prevent fraud and maintain security</li>
+        <li><strong>Legal obligation:</strong> to comply with financial, tax and regulatory requirements</li>
+        <li><strong>Consent:</strong> for session recordings and marketing communications (you may withdraw consent at any time)</li>
+      </ul>
+
+      <h4>4. How We Use Your Data</h4>
+      <p>Your personal data is used to: process and manage your subscription; match you with a suitable tutor; schedule and deliver training sessions; send service communications and receipts; improve our courses and platform; and comply with legal obligations. We do not sell your personal data to any third party.</p>
+
+      <h4>5. Data Sharing</h4>
+      <p>We share data only with: your assigned tutor (name, contact preferences, learning goals); payment processors (financial transaction data only); cloud infrastructure providers under data processing agreements; and regulatory or law enforcement bodies where legally required.</p>
+
+      <h4>6. Data Retention</h4>
+      <p>We retain personal data for as long as your subscription is active and for 7 years thereafter to meet legal and accounting obligations. Session recordings are retained for 12 months unless you request earlier deletion. You may request deletion of your data at any time, subject to legal retention requirements.</p>
+
+      <h4>7. Your Rights</h4>
+      <p>Under GDPR you have the right to: access your personal data; correct inaccurate data; request erasure ("right to be forgotten"); restrict or object to processing; data portability; and withdraw consent. To exercise any of these rights, email <a href="mailto:support@tcklearn.com">support@tcklearn.com</a>. We will respond within 30 days.</p>
+
+      <h4>8. International Transfers</h4>
+      <p>Where data is processed outside the Africa, we ensure appropriate safeguards are in place (such as adequacy decisions or Standard Contractual Clauses) in accordance with Global GDPR requirements.</p>
+
+      <h4>9. Complaints</h4>
+      <p>You have the right to lodge a complaint with the right requlatory office, if you believe your data rights have been violated. We would appreciate the opportunity to address your concerns first.</p>
+    `
+  },
+
+  cookies: {
+    title: 'Cookie Policy',
+    content: `
+      <p class="policy-updated">Last updated: 1 January 2026 &nbsp;·&nbsp; This policy explains how TckLearn uses cookies and similar technologies.</p>
+
+      <h4>1. What Are Cookies?</h4>
+      <p>Cookies are small text files placed on your device by a website when you visit it. They are widely used to make websites work efficiently, improve user experience, and provide reporting information. Some cookies are essential for the website to function; others are optional and used for analytics or personalisation.</p>
+
+      <h4>2. Cookies We Use</h4>
+
+      <h4>Essential Cookies</h4>
+      <p>These cookies are strictly necessary for the website to operate. They cannot be disabled.</p>
+      <ul>
+        <li><strong>session_id</strong> — maintains your session state while browsing</li>
+        <li><strong>csrf_token</strong> — protects form submissions from cross-site request forgery</li>
+        <li><strong>cookie_consent</strong> — stores your cookie preference so we don't ask again</li>
+      </ul>
+
+      <h4>Analytics Cookies (optional, consent required)</h4>
+      <p>These cookies help us understand how visitors use our site so we can improve it. No personally identifiable data is collected by these cookies.</p>
+      <ul>
+        <li><strong>_ga, _ga_*</strong> — Google Analytics 4: tracks page views, session duration and user journeys. Data is anonymised before processing. Retained for 13 months.</li>
+        <li><strong>_hj*</strong> — Hotjar (if enabled): heatmaps and session recordings to understand UX. No keystrokes, passwords or personal fields are recorded.</li>
+      </ul>
+
+      <h4>Functional Cookies (optional)</h4>
+      <p>These cookies enhance your experience by remembering your preferences:</p>
+      <ul>
+        <li><strong>course_filter</strong> — remembers your selected course category filter</li>
+        <li><strong>chat_seen</strong> — remembers that you have seen the chatbot welcome message</li>
+      </ul>
+
+      <h4>3. Third-Party Cookies</h4>
+      <p>Our website may embed content from third-party services (such as fonts from Google Fonts). These services may set their own cookies. We do not control third-party cookies. Please refer to the respective privacy policies of those services.</p>
+
+      <h4>4. Managing Cookies</h4>
+      <p>You can control cookies through your browser settings. Most browsers allow you to view, block or delete cookies. Disabling essential cookies may prevent the website from functioning correctly. You can also opt out of Google Analytics across all websites using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+      <h4>5. Changes to This Policy</h4>
+      <p>We may update this Cookie Policy from time to time to reflect changes in technology or legislation. When we do, we will update the "last updated" date above. Continued use of our website after changes constitutes acceptance.</p>
+
+      <h4>6. Contact</h4>
+      <p>Questions about our use of cookies? Email <a href="mailto:support@tcklearn.com">support@tcklearn.com</a>.</p>
+    `
+  },
+
+  refund: {
+    title: 'Refund Policy',
+    content: `
+      <p class="policy-updated">Last updated: 1 January 2026 &nbsp;·&nbsp; Please read this policy carefully before subscribing.</p>
+
+      <h4>1. Overview</h4>
+      <p>TckLearn is committed to delivering high-quality training and we stand behind the value of our service. This Refund Policy explains the circumstances under which refunds may be issued and our process for handling refund requests.</p>
+
+      <h4>2. Subscription Payments</h4>
+      <p>All subscriptions are billed monthly in advance. As our service is delivered digitally and sessions are provided on an ongoing basis, subscription fees are generally non-refundable once a billing period has commenced. However, we handle all situations fairly and on a case-by-case basis.</p>
+
+      <h4>3. 7-Day Satisfaction Guarantee (New Subscribers)</h4>
+      <p>If you are a new subscriber and are not satisfied with your first session, you may request a full refund of your first month's payment within 7 calendar days of your subscription start date. To claim this guarantee:</p>
+      <ul>
+        <li>Email <a href="mailto:sales@tcklearn.com">sales@tcklearn.com</a> with the subject line "Refund Request — [Your Name]"</li>
+        <li>Include your name, email address and reason for the refund</li>
+        <li>Your request must be received within 7 calendar days of the subscription commencement date</li>
+      </ul>
+      <p>Approved refunds will be processed within 5–10 working days to the original payment method.</p>
+
+      <h4>4. Service Disruption Refunds</h4>
+      <p>If TckLearn fails to deliver a scheduled session and is unable to reschedule within 7 days, you are entitled to a pro-rated credit or refund for the missed session(s). This does not apply where sessions were missed due to learner non-attendance or technical issues on the learner's side.</p>
+
+      <h4>5. Tutor Rematch</h4>
+      <p>Before requesting a refund due to dissatisfaction with your tutor, we encourage you to request a tutor rematch. This is free of charge and available at any time. Email <a href="mailto:support@tcklearn.com">support@tcklearn.com</a> to request one.</p>
+
+      <h4>6. Circumstances Not Eligible for Refund</h4>
+      <p>Refunds will not be issued in the following circumstances:</p>
+      <ul>
+        <li>Cancellation after the 7-day satisfaction guarantee window has elapsed</li>
+        <li>Failure to attend scheduled sessions without 24 hours' advance notice</li>
+        <li>Termination of subscription due to breach of our Terms of Service</li>
+        <li>Change of mind after the guarantee period</li>
+        <li>Failure to use the service during the billing period</li>
+      </ul>
+
+      <h4>7. Cancellation vs. Refund</h4>
+      <p>Cancelling your subscription stops future charges but does not entitle you to a refund of fees already paid for the current billing period, unless you are within the 7-day guarantee window or a service disruption has occurred. You will retain access until the end of the paid period.</p>
+
+      <h4>8. How to Request a Refund</h4>
+      <p>All refund requests must be submitted in writing to <a href="mailto:sales@tcklearn.com">sales@tcklearn.com</a>. Include your full name, subscription email, the plan you are on, and the reason for your request. We aim to respond to all refund requests within 2 working days.</p>
+
+      <h4>9. Disputes</h4>
+      <p>If you are unhappy with our decision on a refund, you may escalate your complaint to <a href="mailto:support@tcklearn.com">support@tcklearn.com</a>. We are committed to resolving all disputes fairly. You also retain the right to seek resolution through the appropriate consumer protection authority or small claims court.</p>
+    `
+  }
+};
+
+function openPolicy(key) {
+  const policy = POLICIES[key];
+  if (!policy) return;
+
+
+  document.getElementById('policy-title').textContent = policy.title;
+  document.getElementById('policy-body').innerHTML = policy.content;
+  document.getElementById('policy-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePolicy() {
+  document.getElementById('policy-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById('policy-overlay')) closePolicy();
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePolicy();
+});
+
+</script>
+</body>
+</html>
